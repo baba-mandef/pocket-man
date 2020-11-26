@@ -1,0 +1,67 @@
+{% extends 'layouts/base.html' %}
+{% load widget_tweaks %}
+
+{% block container %}
+
+
+    <div class="column is-two-fifths is-offset-4">
+    <h3 class="has-text-centered title has-text-info is-3">Registration</h3>
+    <form method="POST">
+        {% csrf_token %}
+
+
+
+        <div class="field">
+            <label class="label">Username</label>
+            <div class="control has-icons-left">
+                {{ form.username|add_class:"input"}}
+                <span class="icon is-small is-left">
+                         <i class="fas fa-user"></i>
+                     </span>
+                <small class="has-text-danger">{{ form.username.errors }}</small>
+            </div>
+
+        </div>
+
+        <div class="field">
+            <label class="label">Email</label>
+            <div class="control has-icons-left">
+                {{ form.email|add_class:"input"}}
+                <span class="icon is-small is-left">
+                         <i class="fas fa-envelope"></i>
+                    <small class="has-text-danger">{{ form.email.errors }}</small>
+                     </span>
+            </div>
+
+
+            <div class="field">
+                <label class="label">Password</label>
+                <div class="control has-icons-left">
+                    {{ form.password1|add_class:"input"}}
+                    <span class="icon is-small is-left">
+                         <i class="fas fa-key"></i>
+                     </span>
+                    <small class="has-text-danger">{{ form.password1.errors }}</small>
+                </div>
+
+                <div class="field">
+                    <label class="label">Password confirmation</label>
+                    <div class="control has-icons-left">
+                        {{ form.password2|add_class:"input"}}
+                        <span class="icon is-small is-left">
+                         <i class="fas fa-key"></i>
+                     </span>
+                        <small class="has-text-danger">{{ form.password2.errors }}</small>
+                    </div>
+
+                </div>
+                <div><small>Do you have an account ? <a href="/accounts/login">Login</a></small></div>
+                <div class="control">
+
+                    <input class="button is-link" type="submit" value="Register">
+
+                </div>
+
+    </form>
+    </div>
+{% endblock %}
