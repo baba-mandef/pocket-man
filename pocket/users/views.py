@@ -7,6 +7,7 @@ def signup(request):
         form = Register(data=request.POST)
         if form.is_valid():
             form.save()
+            return redirect('/home.html')
     else:
         form = Register
     context = {'form': form,}
