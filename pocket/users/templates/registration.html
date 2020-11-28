@@ -1,11 +1,14 @@
 {% extends 'layouts/base.html' %}
+{%load static%}
 {% load widget_tweaks %}
 
 {% block container %}
 
 
     <div class="column is-two-fifths is-offset-4">
+   
     <h3 class="has-text-centered title has-text-info is-3">Registration</h3>
+   
     <form method="POST">
         {% csrf_token %}
 
@@ -55,13 +58,15 @@
                     </div>
 
                 </div>
-                <div><small>Do you have an account ? <a href="/accounts/login">Login</a></small></div>
+                
                 <div class="control">
 
-                    <input class="button is-link" type="submit" value="Register">
+                    <input class="button is-link is-fullwidth" type="submit" value="Register">
 
                 </div>
+                <div><small>Do you have an account ? <a href="/accounts/login">Login</a></small></div>
 
     </form>
+ 
     </div>
 {% endblock %}
