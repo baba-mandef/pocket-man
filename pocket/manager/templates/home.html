@@ -1,13 +1,119 @@
 {%extends 'layouts/base.html'%}
+{% load static %}
 
 {%block container%}
 
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="/">
+                <img src="{% static "logo.png" %}" width="160" height="60">
+            </a>
+            <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+    <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+
+            <a class="navbar-item">
+                How it works
+            </a>
+
+            <a class="navbar-item">
+                About-us
+            </a>
+
+        </div>
+
+        <div class="navbar-end">
+            {% if user.is_authenticated %}
+            <div class="navbar-item">
+                <h3 class="has-background-success-light">
+                    <span class="icons">
+                    <i class="fas fa-user"></i>
+                    </span>
+                    {{ user.username }}
+                </h3>
+            </div>
+
+            <div class="navbar-item">
+                <div class="buttons">
+                    <a class="button is-light" href="/accounts/logout">
+                        Log out
+                    </a>
+                </div>
+            </div>
+            {% else %}
+            <div class="navbar-item">
+                <div class="buttons">
+                    <a class="button is-primary" href="/accounts/register">
+                        <strong>Register</strong>
+                    </a>
+                    <a class="button is-light" href="/accounts/login">
+                        Log in
+                    </a>
+                </div>
+            </div>
+            {% endif %}
+
+        </div>
+
+    </div>
+    </nav>
+
     {%if user.is_authenticated%}
-        
+
     {%else%}
+    <section class="hero is-medium is-primary is-bold">
 
-    
+        <div class="hero-body">
 
+            <div class="container">
+                <div class="columns">
+                <div class="column is-5">
+                <img src="{% static "img/utils/1.png"%}" width="500">
+                </div>
+                <div class="column is-7">
+
+                    <h4 class="title is-1 has-text-centered">
+                        Pocket-Man
+                    </h4>
+                    <p class="has-text-justified is-size-4">
+                        Pocket-man is a web application that helps you manage your financial life.
+                        It allows you to keep an eye on your expenses, allows you to know how to manage
+                        your expenses, to control the evolution of your expenses over a given period and
+                        to know exactly how much you need in a month.
+                    </p>
+
+                    <a href="/accounts/login">
+                    <button class="button is-fullwidth is-success is-outlined is-inverted" >
+                        Get started
+                    </button>
+                     </a>
+
+
+
+            </div>
+                </div>
+                    <div class="columns">
+                    <div class="column is-12">
+                    <img src="{% static "img/utils/banner.png" %}">
+                    </div>
+
+                    </div>
+
+                </div>
+        </div>
+
+    </section>
+        <section class="hero is-small is-primary">
+        
+
+
+        </section>
     {%endif%}
 
 {%endblock%}
