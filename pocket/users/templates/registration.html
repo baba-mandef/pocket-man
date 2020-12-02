@@ -4,9 +4,12 @@
 
 {% block container %}
 
+    <div class="column is-12 is-offset-5">
+        <a href="/"><img src="{% static "logo.png" %}" width="200px"></a>
 
+    </div>
     <div class="column is-two-fifths is-offset-4">
-    <h3 class="has-text-centered title has-text-info is-3">Registration</h3>
+
    
     <form method="POST">
         {% csrf_token %}

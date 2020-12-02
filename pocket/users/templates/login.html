@@ -1,9 +1,14 @@
 {% extends 'layouts/base.html' %}
+{% load static %}
 {% load widget_tweaks %}
 
 {% block container %}
+    <div class="column is-12 is-offset-5">
+        <a href="/"><img src="{% static "logo.png" %}" width="200px"></a>
+
+    </div>
     <div class="column is-two-fifths is-offset-4">
-        <h3 class="has-text-centered title has-text-info is-3">Log in</h3>
+
         <form method="POST">
             {% csrf_token %}
             <div class="field">
