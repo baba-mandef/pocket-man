@@ -1,0 +1,68 @@
+{% extends 'layouts/base-man.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block container %}
+<div class="hero is-medium">
+<div class="hero-body">
+<div class="container">
+
+    <h3 class="title is-3 has-text-centered is-light">Add an expense</h3>
+
+<div class="columns">
+    <div class="column">
+        <img src="{% static "img/utils/8.png" %}">
+    </div>
+
+    <div class="column">
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <div class="field">
+                <label class="label"> Expense name</label>
+
+                <div class="control has-icons-left">
+                        {{ form.name|add_class:"input"}}
+                    <span class="icon is-small is-left"> <i class="fas fa-pen"></i> </span>
+                    <span></span>
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label"> Expense amount</label>
+
+                <div class="control has-icons-left">
+                        {{ form.amount|add_class:"input"}}
+                    <span class="icon is-small is-left"> <i class="fas fa-dollar-sign"></i> </span>
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label"> Expense date <small>(dd/mm/yyyy)</small></label>
+
+                <div class="control has-icons-left">
+                        {{ form.date|add_class:"input"}}
+                    <span class="icon is-small is-left"> <i class="fas fa-calendar"></i> </span>
+                    <span></span>
+                </div>
+            </div>
+
+            <div class="field">
+
+                <div class="control">
+                        <input type="submit" value="Add expense" class="button is-link ">
+
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+</div>
+
+
+</div>
+</div>
+</div>
+{% endblock %}
