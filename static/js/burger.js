@@ -9,3 +9,16 @@
 
   });
 });
+
+
+    $(document).ready(function() {
+
+  // Check for click events on the navbar burger icon
+  $(".dropdown").click(function() {
+
+      // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+      $(".dropdown").toggleClass("is-active");
+      $(".dropdown-menu").toggleClass("is-active");
+
+  });
+});

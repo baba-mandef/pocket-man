@@ -1,5 +1,6 @@
-{%extends 'layouts/base.html'%}
+{%extends 'layouts/base-man.html'%}
 {% load static %}
+{% load widget_tweaks %}
 
 {%block container%}
 
@@ -17,18 +18,35 @@
         </div>
     <div id="navbarBasicExample" class="navbar-menu">
         <div class="navbar-start">
+            {% if user.is_authenticated %}
+                 <div class="navbar-item">
+                    <div class="buttons">
+
+                        <a class="button is-info is-info modal-button" href="incomes/add">
+                            <strong><i class="fas fa-plus-circle"></i> Add income</strong>
+                        </a>
+
+                        <a class="button is-info modal-button" href="expenses/add">
+                            <strong><i class="fas fa-plus-circle" ></i> Add expense</strong>
+                        </a>
+
+                    </div>
+                </div>
+            {% else %}
 
             <a class="navbar-item" href="#features">
                 Features
             </a>
 
-            <a class="navbar-item">
-                About us
+            <a class="navbar-item" href="#contributors">
+                Contributors
             </a>
 
             <a class="navbar-item">
                 How it works
             </a>
+
+            {% endif %}
 
 
         </div>
@@ -70,6 +88,78 @@
     </nav>
 
     {%if user.is_authenticated%}
+
+            <section class="section">
+                    <div class="columns">
+                        <div class="column is-3">
+                            <article class="panel is-success">
+                                <p class="panel-heading">
+                                    Latest incomes
+                                </p>
+                                {% for income in latest_incomes %}
+                                <p class="panel-block">
+                                    <span class="panel-icon">
+                                        <i class="fas fa-dollar-sign" aria-hidden="true"></i>
+                                    </span>
+                                    {{ income.name }}  |  <a href="/activity/delete/{{ income.id }}">&nbsp<i class="fas fa-trash" style="color: red"></i> </a>
+                                </p>
+                                    {% empty %}
+                                    <p class="panel-block">
+                                    No recent incomes
+                                    </p>
+                                {% endfor %}
+
+                            <p class="panel-block">
+                                    <span class="panel-icon">
+                                        <i class="fas fa-bars" aria-hidden="true"></i>
+                                    </span>
+                                    Incomes average : {{ gain_avg }}
+                                </p>
+
+                            <p class="panel-block">
+                                    <span class="panel-icon">
+                                        <i class="fas fa-bars" aria-hidden="true"></i>
+                                    </span>
+                                    <a href="/incomes/history/{{ month }}">All history</a>
+                                </p>
+                            </article>
+                        </div>
+
+                    <div class="column is-3">
+                            <article class="panel is-danger">
+                                <p class="panel-heading">
+                                    Latest expenses
+                                </p>
+                                {% for expense in latest_expenses %}
+                                <p class="panel-block">
+                                    <span class="panel-icon">
+                                        <i class="fas fa-dollar-sign" aria-hidden="true"></i>
+                                    </span>
+                                    {{ expense.name }}  | <a href="/activity/delete/{{ expense.id }}">&nbsp<i class="fas fa-trash" style="color: red"></i> </a>
+                                </p>
+                                    {% empty %}
+
+                                    <p class="panel-block">
+                                    No recent expenses
+                                    </p>
+                                {% endfor %}
+                            <p class="panel-block">
+                                    <span class="panel-icon">
+                                        <i class="fas fa-bars" aria-hidden="true"></i>
+                                    </span>
+                                    Expenses average : {{ spent_avg }}
+                                </p>
+                            <p class="panel-block">
+                                    <span class="panel-icon">
+                                        <i class="fas fa-bars" aria-hidden="true"></i>
+                                    </span>
+                                <a href="/expenses/history/{{ month }}">All history</a>
+                                </p>
+                            </article>
+                        </div>
+
+                    </div>
+            </section>
 
     {%else%}
     <section class="hero is-medium is-primary is-bold">
@@ -285,7 +375,7 @@
                     </div>
                 </div>
 
-                <div class="columns">
+                <div class="columns" id="contributors">
 
                     <div class="column">
 
@@ -314,9 +404,9 @@
 
                                 </div>
                                 <div class="content">
-                                        <i class="fab fa-twitter"></i><br>
-                                        <i class="fab fa-github"></i><br>
-                                        <i class="fas fa-globe"></i>
+                                         <h6><i class="fab fa-twitter"></i> <a href="https://twitter.com/shadow_compiler">@shadow_compiler</a></h6>
+                                         <h6><i class="fab fa-github"></i> <a href="https://github.com/shadowcompiler">@shadowcompiler</a> </h6>
+                                         <h6><i class="fas fa-globe"></i> <a href="http://henri-dev.tech">henri-dev.tech</a> </h6>
                                 </div>
 
                             </div>
@@ -331,7 +421,7 @@
                             <div class="card-image">
                                 <figure class="image is-4by1">
 
-                                    <img src="{% static "img/contributors/saad.jpg" %}">
+                                    <img src="{% static "img/contributors/sad.jpg" %}">
 
                                 </figure>
                             </div>
@@ -352,9 +442,10 @@
 
                                 </div>
                                 <div class="content">
-                                        <i class="fab fa-twitter"></i><br>
-                                        <i class="fab fa-github"></i><br>
-                                        <i class="fas fa-globe"></i>
+                                        <h6><i class="fab fa-twitter"></i> <a href="https://twitter.com/"></a></h6>
+                                         <h6><i class="fab fa-github"></i> <a href="https://github.com/dash201">@dash201</a> </h6>
+                                         <h6><i class="fas fa-globe"></i> <a href="">Saad</a> </h6>
+
                                 </div>
 
                             </div>
@@ -369,7 +460,7 @@
                             <div class="card-image">
                                 <figure class="image is-4by1">
 
-                                    <img src="{% static "img/contributors/shadow.jpg" %}">
+                                    <img src="{% static "img/contributors/mus.jpg" %}">
 
                                 </figure>
                             </div>
@@ -384,15 +475,16 @@
                                     </div>
 
                                     <div class="media-content">
-                                        <h4 class="title is-4 has-text-black">Sadi Henri Paraiso</h4>
-                                        <h6 class="subtitle is-6 has-text-info">Web back-end developer</h6>
+                                        <h4 class="title is-4 has-text-black">Mustapha Ganiou</h4>
+                                        <h6 class="subtitle is-6 has-text-info">Tester</h6>
                                     </div>
 
                                 </div>
                                 <div class="content">
-                                        <i class="fab fa-twitter"></i><br>
-                                        <i class="fab fa-github"></i><br>
-                                        <i class="fas fa-globe"></i>
+                                        <h6><i class="fab fa-twitter"></i> <a href="https://twitter.com/"></a></h6>
+                                         <h6><i class="fab fa-github"></i> <a href="https://github.com/"></a> </h6>
+                                         <h6><i class="fas fa-globe"></i> <a href=""></a> </h6>
+
                                 </div>
 
                             </div>
