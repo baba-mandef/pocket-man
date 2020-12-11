@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 
 class Activity(models.Model):
     name = models.CharField(max_length=150)
-    amount = models.IntegerField()
+    amount = models.PositiveIntegerField()
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     date = models.DateField()
     is_spent = models.BooleanField()
