@@ -5,7 +5,7 @@ from django.urls import path
 urlpatterns = [
 
     path('register', signup, name='register'),
-    path('login', LoginView.as_view(template_name='login.html'), name='login'),
+    path('login', LoginView.as_view(template_name='login.html', redirect_authenticated_user=True), name='login'),
     path('logout', LogoutView.as_view(), name='logout'),
 
 ]
