@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'pocket.manager',
     'crispy_forms',
     'widget_tweaks',
+
 ]
 
 MIDDLEWARE = [
