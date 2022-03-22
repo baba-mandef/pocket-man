@@ -7,5 +7,4 @@ class Activity(models.Model):
     amount = models.PositiveIntegerField()
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     date = models.DateField()
-    is_spent = models.BooleanField()
-    is_gain = models.BooleanField()
+    type = models.IntegerField() #0-> expense 1-> income
