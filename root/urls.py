@@ -6,8 +6,6 @@ from pocket import router
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('accounts/', include('pocket.users.urls')),
-    path('', include('pocket.manager.urls')),
     path('api/v1/', include(router))
 
 ]

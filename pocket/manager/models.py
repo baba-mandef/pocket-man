@@ -8,3 +8,6 @@ class Activity(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     date = models.DateField()
     type = models.IntegerField() #0-> expense 1-> income
+
+class Prevision(models.Model):
+    name = models.CharField(max_length=150)
